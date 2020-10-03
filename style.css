@@ -1,0 +1,9 @@
+.jumbotron-fluid {
+    color: white;
+    background-color: #36454f;
+}
+.jumbotron{background-color: aliceblue;}
+#display {background-color: aliceblue;}
+
+/* .col {flex-direction: row;
+    justify-content: flex-end;} */
