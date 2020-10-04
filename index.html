@@ -31,22 +31,22 @@
 
     <!--there should be two columns: one taking up 25% of the page, the other taking up 75%-->
     <div class="container">
-        <div class="row">
+        <div class="row" id="sidebar">
             <!--search for city sidebar-->
             <div id="sidebar" class="col-md-3">
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Search for a city</label>
+                        <label for="searchInput">Search for a city</label>
                         <input type="city" class="form-control" id="citySearch" aria-describedby="citySearch">
                     </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="button" id= "searchBtn" class="btn btn-primary">Search</button>
                 </form>
             </div>
             <!--end if sidebar-->
 
             <div id="display" class="col-md-9">
                 <div id="current" class="row">
-                    <div class="jumbotron">
+                    <div class="jumbotron" id="main">
                         <h1 class="display-4">City Name</h1>
                         <p class="lead temp">Temperature</p>
                         <p class="lead hum">Humidity</p>

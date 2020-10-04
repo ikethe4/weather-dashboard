@@ -2,8 +2,13 @@
     color: white;
     background-color: #36454f;
 }
-.jumbotron{background-color: aliceblue;}
-#display {background-color: aliceblue;}
+
+#current {
+    background-color: #f2f2f2;
+}
+#main {
+    background-color: #f2f2f2;
+}
 
 /* .col {flex-direction: row;
     justify-content: flex-end;} */
