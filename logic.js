@@ -23,8 +23,8 @@ $("#searchBtn").on("click", function () {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        console.log(citySearch);
-        console.log(response);
+        // console.log(citySearch);
+        // console.log(response);
         $(".city-name").text(response.name);
         $(".temp").text("Temperature: " + response.main.temp + "° F");
         $(".hum").text("Humidity: " + response.main.humidity);
@@ -35,14 +35,48 @@ $("#searchBtn").on("click", function () {
 
         var lat = response.coord.lat
         var lon = response.coord.lon
-        var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+        var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
 
         $.ajax({
             url: uvURL,
             method: "GET"
         }).then(function (uv) {
-            console.log(uv);
+            // console.log(uv);
             $(".UV").text("UV index: " + uv.value);
+        })
+
+        //5 day forecast call
+        var fiveURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&cnt=5&units=imperial&appid=" + apiKey
+
+        $.ajax({
+            url: fiveURL,
+            method: "GET"   
+        }).then(function(fiveDay){
+            console.log(fiveDay);
+
+            //images
+            $(".day1-image").html(fiveDay.list[0].weather[0].description);
+            $(".day2-image").html(fiveDay.list[1].weather[0].description);
+            $(".day3-image").html(fiveDay.list[2].weather[0].description);
+            $(".day4-image").html(fiveDay.list[3].weather[0].icon);
+            $(".day5-image").html(fiveDay.list[4].weather[0].description);
+
+
+            //temps
+            $(".day1-temp").html(fiveDay.list[0].main.temp);
+            $(".day2-temp").html(fiveDay.list[1].main.temp);
+            $(".day3-temp").html(fiveDay.list[2].main.temp);
+            $(".day4-temp").html(fiveDay.list[3].main.temp);
+            $(".day5-temp").html(fiveDay.list[4].main.temp);
+
+            //humidity
+            $(".day1-hum").html(fiveDay.list[0].main.humidity);
+            $(".day2-hum").html(fiveDay.list[1].main.humidity);
+            $(".day3-hum").html(fiveDay.list[2].main.humidity);
+            $(".day4-hum").html(fiveDay.list[3].main.humidity);
+            $(".day5-hum").html(fiveDay.list[4].main.humidity); 
+
+
         })
 
     });
