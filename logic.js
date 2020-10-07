@@ -74,25 +74,38 @@ function searchWeather(city) {
 
             //images
             //alt tags
-            $(".day1-image").html(fiveDay.list[0].weather[0].description);
-            $(".day2-image").html(fiveDay.list[1].weather[0].description);
-            $(".day3-image").html(fiveDay.list[2].weather[0].description);
-            $(".day4-image").html(fiveDay.list[3].weather[0].description);
-            $(".day5-image").html(fiveDay.list[3].weather[0].description);
+            // $(".day1-image").html(fiveDay.list[0].weather[0].description);
+            // $(".day2-image").html(fiveDay.list[1].weather[0].description);
+            // $(".day3-image").html(fiveDay.list[2].weather[0].description);
+            // $(".day4-image").html(fiveDay.list[3].weather[0].description);
+            // $(".day5-image").html(fiveDay.list[3].weather[0].description);
 
 
 
             // icon url: `http://openweathermap.org/img/w/${iconCode}.png`
 
             //source tags
-            // var iconOne= fiveDay.list[0].weather[0].icon
-            // var iconTwo= fiveDay.list[0].weather[0].icon
-            // var iconThree= fiveDay.list[0].weather[0].icon
-            // var iconFour= fiveDay.list[0].weather[0].icon
-            // var iconFive= fiveDay.list[0].weather[0].icon
-            // var urlOne = "http://openweathermap.org/img/w/" + iconOne +".png"
+            var iconOne= fiveDay.list[0].weather[0].icon
+            var iconTwo= fiveDay.list[1].weather[0].icon
+            var iconThree= fiveDay.list[2].weather[0].icon
+            var iconFour= fiveDay.list[3].weather[0].icon
+            var iconFive= fiveDay.list[4].weather[0].icon
+            var urlOne = "http://openweathermap.org/img/w/" + iconOne +".png"
+            var urlTwo = "http://openweathermap.org/img/w/" + iconTwo +".png"
+            var urlThree = "http://openweathermap.org/img/w/" + iconThree +".png"
+            var urlFour = "http://openweathermap.org/img/w/" + iconFour +".png"
+            var urlFive = "http://openweathermap.org/img/w/" + iconFive +".png"
 
-            // $(".day1-image").attr("src", urlOne);
+
+
+            $(".day1-image").attr("src", urlOne);
+            $(".day2-image").attr("src", urlTwo);
+            $(".day3-image").attr("src", urlThree);
+            $(".day4-image").attr("src", urlFour);
+            $(".day5-image").attr("src", urlFive);
+
+            
+
             // $(".day2-image").html(fiveDay.list[1].weather[0].icon);
             // $(".day3-image").html(fiveDay.list[2].weather[0].icon);
             // $(".day4-image").html(fiveDay.list[3].weather[0].icon);

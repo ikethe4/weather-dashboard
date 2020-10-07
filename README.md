@@ -10,6 +10,7 @@ This application uses the open API openweathermap to provide the most up to date
 * 5 day forecast to provide a snapshot of the days ahead
 * Current weather in anlarge, easy to read display
 * Color coding for the UV index, providing easy to process information upon first glance
+* Icons in the five day forecast to provide at a glance information
 
 ![An example of the deployed website](weather.png)
 
