@@ -14,4 +14,7 @@ This application uses the open API openweathermap to provide the most up to date
 
 ![An example of the deployed website](weather.png)
 
+[View the website here](https://ikethe4.github.io/weather-dashboard/)
+
+
 
