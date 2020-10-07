@@ -7,8 +7,8 @@
 // var uvIndex
 
 //search button click event: citySearched should feed into API search in openweathermaps
-function searchWeather(city){
-    var apiKey = "7295765f9a8470ed196df254c5b22bfd"
+function searchWeather(city) {
+    var apiKey = "3a62f7eb84bb3fe25640af56e798b7da"
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey;
 
     //   citySearch needs a new row added to the sidebar for each submission 
@@ -21,7 +21,7 @@ function searchWeather(city){
         method: "GET"
     }).then(function (response) {
         // console.log(citySearch);
-        // console.log(response);
+        console.log(response);
         $(".city-name").text(response.name);
         $(".temp").text("Temperature: " + response.main.temp + "° F");
         $(".hum").text("Humidity: " + response.main.humidity);
@@ -39,7 +39,28 @@ function searchWeather(city){
             method: "GET"
         }).then(function (uv) {
             // console.log(uv);
-            $(".UV").text("UV index: " + uv.value);
+            $(".UV").text("UV index: ");
+
+            if (uv.value < 3) {
+                var uvColor = $("<span class= 'low'>");
+            }
+            else if (uv.value < 5) {
+                var uvColor = $("<span class= 'medium'>");
+            }
+            else if (uv.value < 7) {
+                var uvColor = $("<span class= 'high'>");
+            }
+            else if (uv.value < 9) {
+                var uvColor = $("<span class= 'very-high'>");
+            }
+            else {
+                var uvColor = $("<span class= 'extreme'>");
+            }
+
+
+            uvColor.text(uv.value);
+            $(".UV").append(uvColor);
+
         })
 
         //5 day forecast call
@@ -47,16 +68,35 @@ function searchWeather(city){
 
         $.ajax({
             url: fiveURL,
-            method: "GET"   
-        }).then(function(fiveDay){
+            method: "GET"
+        }).then(function (fiveDay) {
             console.log(fiveDay);
 
             //images
+            //alt tags
             $(".day1-image").html(fiveDay.list[0].weather[0].description);
             $(".day2-image").html(fiveDay.list[1].weather[0].description);
             $(".day3-image").html(fiveDay.list[2].weather[0].description);
             $(".day4-image").html(fiveDay.list[3].weather[0].description);
-            $(".day5-image").html(fiveDay.list[4].weather[0].description);
+            $(".day5-image").html(fiveDay.list[3].weather[0].description);
+
+
+
+            // icon url: `http://openweathermap.org/img/w/${iconCode}.png`
+
+            //source tags
+            // var iconOne= fiveDay.list[0].weather[0].icon
+            // var iconTwo= fiveDay.list[0].weather[0].icon
+            // var iconThree= fiveDay.list[0].weather[0].icon
+            // var iconFour= fiveDay.list[0].weather[0].icon
+            // var iconFive= fiveDay.list[0].weather[0].icon
+            // var urlOne = "http://openweathermap.org/img/w/" + iconOne +".png"
+
+            // $(".day1-image").attr("src", urlOne);
+            // $(".day2-image").html(fiveDay.list[1].weather[0].icon);
+            // $(".day3-image").html(fiveDay.list[2].weather[0].icon);
+            // $(".day4-image").html(fiveDay.list[3].weather[0].icon);
+            // $(".day5-image").html(fiveDay.list[4].weather[0].icon);
 
 
             //temps
@@ -71,17 +111,29 @@ function searchWeather(city){
             $(".day2-hum").html("Humidity: " + fiveDay.list[1].main.humidity);
             $(".day3-hum").html("Humidity: " + fiveDay.list[2].main.humidity);
             $(".day4-hum").html("Humidity: " + fiveDay.list[3].main.humidity);
-            $(".day5-hum").html("Humidity: " + fiveDay.list[4].main.humidity); 
+            $(".day5-hum").html("Humidity: " + fiveDay.list[4].main.humidity);
 
 
         })
 
     });
+    //Append buttons
+    var btn = $("<button>");
+    btn.addClass("btn btn-secondary col-md-10");
+    btn.text(city);
+
+    $("#saved-searches").append(btn)
+
+    $(".btn-secondary").on("click", function () {
+        // console.log(this);
+        searchWeather(city)
+
+    })
 
 
 }
 
-function saveToStorage (data) {
+function saveToStorage(data) {
     var currentData = JSON.parse(localStorage.getItem("saved-cities")) || [];
     currentData.push(data);
     localStorage.setItem("saved-cities", JSON.stringify(currentData))
@@ -94,20 +146,25 @@ $("#searchBtn").on("click", function () {
     saveToStorage(citySearch);
 })
 //call on local storage
-function loadLastCity(){
+function loadLastCity() {
     var currentData = JSON.parse(localStorage.getItem("saved-cities"));
-    var lastCity = currentData[currentData.length-1];
+    var lastCity = currentData[currentData.length - 1];
     searchWeather(lastCity);
 
 }
 loadLastCity()
 
+//clicking former searches
+
+
+
+
 // function renderSavedCities(){
-//     var currentData = JSON.parse(localStorage.getItem("saved-cities")) || [];
+//     var currentData = JSON.parse(localStorage.getItem("saved-cities"));
 //     currentData.forEach(function(city){
 //         // console.log(city)"
 //         var btn = $("<button>");
-//         btn.addClass("btn btn-secondary row");
+//         btn.addClass("btn btn-secondary col-md-10");
 //         btn.text(city);
 
 //         $("#saved-searches").append(btn)

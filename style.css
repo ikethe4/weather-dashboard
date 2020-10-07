@@ -10,5 +10,24 @@
     background-color: #f2f2f2;
 };
 
+.low {
+    background-color: green;
+}
+
+.medium {
+    background-color: yellow;
+}
+
+.high {
+    background-color: orange;
+}
+
+.very-high {
+    background-color: red;
+}
+
+.extreme {
+    background-color: purple;
+}
 /* .col {flex-direction: row;
     justify-content: flex-end;} */
